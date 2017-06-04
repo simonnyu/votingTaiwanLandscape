@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="c3.min.css" rel="stylesheet" type="text/css">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="c3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="all.css">
+    <title>台灣自然美景爭霸戰</title>
+</head>
+<div class="wrap">
+    <header>
+        <div class="headerTitle">
+            <h1 class="title">台灣自然美景爭霸戰</h1>
+        </div>
+        <a class="sign enlarge">我要投稿</a>
+    </header>
+    <content>
+        <div class="nowVote">
+            <h2 class="title">目前戰績</h2>
+            <div id="votingStatus"></div>
+        </div>
+        <div class="voteArea">
+            <h2 class="title">參賽作品</h2>
+            <ul class="list">
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="page">
+            <ul class="pageList">
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">6</a></li>
+            </ul>
+        </div>
+    </content>
+    <hr/>
+    <footer>
+        <p>CopyRight 2017 國立高雄大學資訊管理學系 All Right Reserved.</p>
+        <p>CopyRight 2017 國立高雄大學資訊管理學系 All Right Reserved.</p>
+    </footer>
+    <div class="detailBackground" style="display: none">
+        <div class="detailInfo">
+        	<div class="closeDialogBtn right">
+        		<p>[X]</p>
+        	</div>
+            <img src="img/test_full.jpg" width="100%">
+            <p>作品編號: 001</p>
+            <p>作品名稱: 大崙山</p>
+            <p>作品描述:</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <a class="voteThis right enlarge" href="#" onclick="voteThis()">我要投票</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+var chart = c3.generate({
+    bindto: '#votingStatus',
+    data: {
+        columns: [
+            ['data1', 80, 70, 50, 30, 10, 5],
+        ],
+        types: {
+            data1: 'bar',
+        }
+    },
+    axis: {
+        rotated: true
+    }
+});
+
+function showInfo() {
+    $('.detailBackground').fadeIn(300);
+}
+$('.closeDialogBtn').click(function() {
+    $('.detailBackground').fadeOut();
+})
+$('.detailInfo').click(function(e) {
+    e.stopPropagation();
+})
+</script>
+
+<body>
+</body>
+
+</html>

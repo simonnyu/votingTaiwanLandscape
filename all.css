@@ -1,0 +1,238 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+h1{
+	font-size: 36px;
+}
+h2{
+	font-size: 30px;
+}
+body{
+	font-family: 'Noto Sans TC', sans-serif;
+	background-color: #e9ebee; 
+}
+ol, ul {
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+@media (min-width: 768px){
+	.wrap{
+		width: 820px;
+		margin: 0 auto;
+		background-color: #CCE3DF;
+	}
+}
+
+header{
+	background-image: url("img/header.jpg");
+	background-repeat: no-repeat;
+	height: 320px;
+	position: relative;
+}
+content{
+	padding: 0px 10px;
+	display: block;
+}
+footer{
+	padding: 10px;
+	text-align: center;
+}
+
+.clear{
+  clear: both
+}
+.headerTitle{
+	position: absolute;
+	top: 123px;
+}
+.headerTitle h1{
+	background-color: rgba(0,0,0,0.5);
+	display:inline-block;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+	padding: 10px;
+}
+.title{
+	background-color: gray;
+	padding: 10px;
+}
+.sign{
+	cursor: pointer;
+	float: left;
+	display: inline-block;
+	padding: 5px;
+	margin: 10px 3px;
+	background-color: #A9E969;
+	border: 1px black;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+.sign:hover{
+	display: inline-block;
+	color: white;
+	padding: 5px;
+	margin: 10px 3px;
+	background-color: black;
+	border: 1px black;
+}
+#voteStatus{
+}
+.nowVote{
+	text-align: center;
+}
+.voteArea{
+	text-align: center;
+}
+.list ul{
+	margin: 0px;
+	display: inline-block;
+	padding: 10px;
+	list-style-type: none;
+	position: relative;
+}
+.list li{
+	display: inline-block;
+	padding: 10px;
+	list-style-type: none;
+	position: relative;
+	height: 266px;
+	width: 228px;
+}
+.voteInfo{
+	height: 228px;
+	position: relative;
+}
+.detail{
+	position: absolute;
+	height: 15%;
+	width: 100%;
+	background: rgba(0,0,0,0.5);
+	left: 0;
+	bottom: 0;
+}
+.voteNow{
+	text-align: left;
+	height: 38px;
+}
+.voteThis{
+	float: left;
+	display: inline-block;
+	padding: 5px;
+	margin: 5px 0px;
+	background-color: #A9E969;
+	border: 1px black;
+}
+.voteThis:hover{
+	display: inline-block;
+	color: white;
+	padding: 5px;
+	margin: 5px 0px;
+	background-color: black;
+	border: 1px black;
+}
+.voteNow span{
+	float: right;
+	padding: 5px;
+	margin: 5px 0px;
+}
+.workName{
+	position: absolute;
+	font-size: 20px;
+	left: 10px;
+	bottom: 0;
+	color: white;
+	margin: 5px;
+	z-index: 1;
+}
+.page{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.pageList ul{
+	margin: auto;
+}
+.pageList li{
+	display: inline;
+	
+}
+.pageList a{
+	display: inline-block;
+	padding: 12px;
+	margin: 5px;
+}
+.pageList a:hover{
+	background: orange;
+}
+.detailBackground{
+	background: rgba(20, 20, 20, 0.9);
+  	position: fixed;
+  	height: 100%;
+  	width: 100%;
+  	top: 0;
+  	left: 0;
+  	display: none;
+  	z-index: 2;
+}
+.detailInfo{
+	background-color: white;
+	width: 720px;
+	height: 100vh;
+	margin: 0 auto;
+	padding: 50px;
+	z-index: 3;
+}
+.right{
+	float: right;
+	
+}
+.closeDialogBtn{
+	cursor: pointer;
+	background-color: red;
+	color: white;
+	display: inline-block;
+	margin: 5px 0px;
+}
+.closeDialogBtn:hover{
+	cursor: pointer;
+	background-color: black;
+	color: white;
+	display: inline-block;
+	margin: 5px 0px;
+}
+.closeDialogBtn p{
+	padding: 5px;
+}
+.enlarge{
+	padding: 10px;
+	font-size: 24px;
+}
+.enlarge:hover{
+	padding: 10px;
+	font-size: 24px;
+}
