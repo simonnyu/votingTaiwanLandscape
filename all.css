@@ -189,7 +189,7 @@ footer{
 .pageList a:hover{
 	background: orange;
 }
-.detailBackground{
+.dialogBackground{
 	background: rgba(20, 20, 20, 0.9);
   	position: fixed;
   	height: 100%;
@@ -205,6 +205,7 @@ footer{
 	height: 100vh;
 	margin: 0 auto;
 	padding: 50px;
+	overflow:auto;
 	z-index: 3;
 }
 .right{
