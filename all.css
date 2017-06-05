@@ -201,11 +201,7 @@ footer{
 }
 .detailInfo{
 	background-color: white;
-	width: 720px;
 	margin: 0 auto;
-	padding: 50px;
-	overflow: scroll;
-	z-index: 3;
 }
 .right{
 	float: right;
