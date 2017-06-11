@@ -121,6 +121,9 @@ footer{
 	height: 266px;
 	width: 228px;
 }
+.list img{
+	width: 100%;
+}
 .voteInfo{
 	height: 228px;
 	position: relative;
