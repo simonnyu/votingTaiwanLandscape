@@ -9,6 +9,10 @@
     <script src="c3.min.js"></script>
     <script src="sweetalert2.min.js"></script>
     <script src="croppie.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
     <link rel="stylesheet" href="croppie.css" />
     <link rel="stylesheet" href="sweetalert2.min.css">
     <link rel="stylesheet" type="text/css" href="all.css">
@@ -218,6 +222,16 @@
     </footer>
 </div>
 <script type="text/javascript">
+jQuery(document).ready(function($) {
+    var config = {
+        apiKey: "AIzaSyDTKjj1K5M9xELXNfxPsfkmnc19RBVThZY",
+        authDomain: "votingtaiwanlandscape.firebaseapp.com",
+        databaseURL: "https://votingtaiwanlandscape.firebaseio.com",
+        storageBucket: "gs://votingtaiwanlandscape.appspot.com/"
+    };
+    console.log(firebase.initializeApp(config));
+
+});
 var newImageFile;
 var chart = c3.generate({
     bindto: '#votingStatus',
@@ -262,15 +276,15 @@ function newPost() {
     }).then(function(file) {
         var reader = new FileReader
         reader.onload = function(e) {
-            var html = '<form action="" enctype="multipart/form-data" >\
+            var html = '<form action="" onsubmit="createPost()" enctype="multipart/form-data" >\
                     <table class="newPost">\
-                        <input type="hidden" name="imgCode" value="'+e.target.result+'">\
+                        <input type="hidden" name="imgCode" value="' + e.target.result + '">\
                         <tr>\
-                            <td colspan="2" id="previewArea"><img width="100%" id="preview" src="'+e.target.result+'"/></td>\
+                            <td colspan="2" id="previewArea"><img width="100%" id="preview" src="' + e.target.result + '"/></td>\
                         </tr>\
                         <tr>\
                             <td>作品名稱</td>\
-                            <td><input type="text" name="postTitle" maxlength="10"></td>\
+                            <td><input type="text" name="postTitle" id="postTitle"maxlength="10"></td>\
                         </tr>\
                         <tr>\
                             <td>作品描述</td>\
@@ -306,37 +320,15 @@ function newPost() {
 }
 
 function createPost() {
-    var html = '<form action="" enctype="multipart/form-data" >\
-                    <table class="newPost">\
-                        <tr>\
-                            <td>作品名稱</td>\
-                            <td><input type="text" name="postTitle" maxlength="10"></td>\
-                        </tr>\
-                        <tr>\
-                            <td>作品描述</td>\
-                            <td><textarea rows="5" name="postDecpt" class="decpt"></textarea></td>\
-                        </tr>\
-                        <tr>\
-                            <td>上傳圖片</td>\
-                            <td><input type="button" name="files[]" id="uploadImg" value="選擇照片" onclick="newImg(event)"></td>\
-                        </tr>\
-                        <tr>\
-                            <td colspan="2" id="previewArea"></td>\
-                        </tr>\
-                        <tr>\
-                            <td colspan="2"><input type="submit" value="投稿"></td>\
-                        </tr>\
-                    </table>\
-                </form>';
-    swal({
-        title: "加入戰局",
-        html: html,
-        showConfirmButton: false,
-        allowEscapeKey: false,
-        width: 540,
-        padding: 50
-    });
-    document.getElementById('uploadImg').addEventListener('change', newImg, false);
+    var title = $('#postTitle').val();
+    var decpt = $('.decpt').val();
+    var ref = firebase.database().ref('/');
+    var newNo
+    ref.once("value").then(function(snapshot){
+        newNo = snapshot.child('postNoRef').val()
+    })
+    console.log(newNo);
+
 }
 </script>
 
