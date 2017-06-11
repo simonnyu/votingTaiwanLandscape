@@ -8,6 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="c3.min.js"></script>
     <script src="sweetalert2.min.js"></script>
+    <script src="croppie.js"></script>
+    <link rel="stylesheet" href="croppie.css" />
     <link rel="stylesheet" href="sweetalert2.min.css">
     <link rel="stylesheet" type="text/css" href="all.css">
     <title>台灣自然美景爭霸戰</title>
@@ -17,7 +19,7 @@
         <div class="headerTitle">
             <h1 class="title">台灣自然美景爭霸戰</h1>
         </div>
-        <a class="sign enlarge">我要投稿</a>
+        <a class="sign enlarge" onclick="newPost()">我要投稿</a>
     </header>
     <content>
         <div class="nowVote">
@@ -216,6 +218,7 @@
     </footer>
 </div>
 <script type="text/javascript">
+var newImageFile;
 var chart = c3.generate({
     bindto: '#votingStatus',
     data: {
@@ -247,6 +250,93 @@ function showInfo() {
         width: 720,
         padding: 50
     })
+}
+
+function newPost() {
+    swal({
+        title: '先上傳圖片',
+        input: 'file',
+        inputAttributes: {
+            accept: 'image/*'
+        }
+    }).then(function(file) {
+        var reader = new FileReader
+        reader.onload = function(e) {
+            var html = '<form action="" enctype="multipart/form-data" >\
+                    <table class="newPost">\
+                        <input type="hidden" name="imgCode" value="'+e.target.result+'">\
+                        <tr>\
+                            <td colspan="2" id="previewArea"><img width="100%" id="preview" src="'+e.target.result+'"/></td>\
+                        </tr>\
+                        <tr>\
+                            <td>作品名稱</td>\
+                            <td><input type="text" name="postTitle" maxlength="10"></td>\
+                        </tr>\
+                        <tr>\
+                            <td>作品描述</td>\
+                            <td><textarea rows="5" name="postDecpt" class="decpt"></textarea></td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2"><input type="submit" value="投稿"></td>\
+                        </tr>\
+                    </table>\
+                </form>';
+            swal({
+                title: "加入戰局",
+                html: html,
+                showConfirmButton: false,
+                allowEscapeKey: false,
+                width: 540,
+                padding: 50,
+            })
+            newImageFile = $('#preview').croppie({
+                viewport: {
+                    width: 400,
+                    height: 400,
+                    type: 'square'
+                },
+                boundary: {
+                    width: 400,
+                    height: 400
+                }
+            });
+        }
+        reader.readAsDataURL(file)
+    })
+}
+
+function createPost() {
+    var html = '<form action="" enctype="multipart/form-data" >\
+                    <table class="newPost">\
+                        <tr>\
+                            <td>作品名稱</td>\
+                            <td><input type="text" name="postTitle" maxlength="10"></td>\
+                        </tr>\
+                        <tr>\
+                            <td>作品描述</td>\
+                            <td><textarea rows="5" name="postDecpt" class="decpt"></textarea></td>\
+                        </tr>\
+                        <tr>\
+                            <td>上傳圖片</td>\
+                            <td><input type="button" name="files[]" id="uploadImg" value="選擇照片" onclick="newImg(event)"></td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2" id="previewArea"></td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2"><input type="submit" value="投稿"></td>\
+                        </tr>\
+                    </table>\
+                </form>';
+    swal({
+        title: "加入戰局",
+        html: html,
+        showConfirmButton: false,
+        allowEscapeKey: false,
+        width: 540,
+        padding: 50
+    });
+    document.getElementById('uploadImg').addEventListener('change', newImg, false);
 }
 </script>
 

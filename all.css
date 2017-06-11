@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -236,3 +236,21 @@ footer{
 .footerLink:hover{
 	color: orange;
 }
+.newPost{
+	width: 100%;
+}
+.newPost td{
+	padding: 10px 1%;
+}
+.newPost td:first-child{
+	text-align: right;
+	width: 18%;
+}
+.newPost td:nth-child(2){
+	text-align: left;
+	width: 78%;
+}
+.newPost input,textarea{
+	width: 100%;
+}
+
