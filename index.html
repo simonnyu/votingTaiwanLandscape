@@ -161,7 +161,7 @@ function newPost() {
             var html = '<form action="#" enctype="multipart/form-data" >\
                     <table class="newPost">\
                         <tr>\
-                            <td colspan="2" id="previewArea"><img id="preview" src="' + e.target.result + '"/></td>\
+                            <td colspan="2" id="previewArea"><img id="preview_img" src="' + e.target.result + '"/></td>\
                         </tr>\
                         <tr>\
                             <td>作品名稱</td>\
@@ -173,6 +173,17 @@ function newPost() {
                         </tr>\
                     </table>\
                 </form>';
+            newImageFile = $('#preview_img').croppie({
+                viewport: {
+                    width: 400,
+                    height: 400,
+                    type: 'square'
+                },
+                boundary: {
+                    width: 400,
+                    height: 400
+                },
+            });
             swal({
                 title: "加入戰局",
                 html: html,
@@ -189,17 +200,7 @@ function newPost() {
                     'success'
                 )
             })
-            newImageFile = $('#preview').croppie({
-                viewport: {
-                    width: 400,
-                    height: 400,
-                    type: 'square'
-                },
-                boundary: {
-                    width: 400,
-                    height: 400
-                },
-            });
+
         }
         reader.readAsDataURL(file);
         var ref = firebase.database().ref();
@@ -221,7 +222,11 @@ function createPost() {
     };
     newImageFile.croppie('result', {
         type: 'blob',
-        format: 'jpeg'
+        size: {
+            width: 600,
+            height: 600
+        },
+        format: 'png'
     }).then(function(resp) {
         var uploadTask = firebase.storage().ref().child('postImg/' + newNo).put(resp, metadata);
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
