@@ -163,10 +163,8 @@ function newPost() {
         var reader = new FileReader
         reader.onload = function(e) {
             var html = '<form action="#" enctype="multipart/form-data" >\
+                    <div id="previewArea"><img id="preview" src="' + e.target.result + '"/></div>\
                     <table class="newPost">\
-                        <tr>\
-                            <td colspan="2" id="previewArea"><img id="preview" src="' + e.target.result + '"/></td>\
-                        </tr>\
                         <tr>\
                             <td>作品名稱</td>\
                             <td><input type="text" name="postTitle" id="postTitle"maxlength="10"></td>\
@@ -196,13 +194,13 @@ function newPost() {
             newImageFile = $('#preview').croppie({
                 enableExif: true,
                 viewport: {
-                    width: 266,
-                    height: 228,
+                    width: 400,
+                    height: 400,
                     type: 'square'
                 },
                 boundary: {
-                    width: 266,
-                    height: 228
+                    width: 400,
+                    height: 400
                 },
             });
             basic.croppie('result', 'html').then(function(html) {

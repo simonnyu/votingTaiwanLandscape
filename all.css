@@ -256,4 +256,7 @@ footer{
 .newPost input,textarea{
 	width: 100%;
 }
+#previewArea{
+	width: 100%;
+}
 
