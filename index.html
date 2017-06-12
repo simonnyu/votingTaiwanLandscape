@@ -3,20 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-
     <link href="c3.min.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="Chart.js"></script>
     <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="Chart.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="c3.min.js"></script>
     <script src="sweetalert2.min.js"></script>
-    <script src="croppie.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
-    <link rel="stylesheet" href="croppie.css" />
     <link rel="stylesheet" href="sweetalert2.min.css">
     <link rel="stylesheet" type="text/css" href="all.css">
     <title>台灣自然美景爭霸戰</title>
@@ -26,22 +18,195 @@
         <div class="headerTitle">
             <h1 class="title">台灣自然美景爭霸戰</h1>
         </div>
-        <a class="sign enlarge" onclick="newPost()">我要投稿</a>
+        <a class="sign enlarge">我要投稿</a>
     </header>
     <content>
         <div class="nowVote">
             <h2 class="title">目前戰績</h2>
-            <div id="votingStatus"></div>
+            <canvas id="myChart" width="750" height="250"></canvas>
         </div>
         <div class="voteArea">
             <h2 class="title">參賽作品</h2>
             <ul class="list">
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" onclick="showInfo()">
+                        <div class="voteInfo">
+                            <img src="img/test.jpg">
+                            <div class="detail">
+                                <p class="workName">作品名稱</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="voteNow">
+                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
+                        <span>總票數: 80</span>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="clear"></div>
         <div class="page">
             <ul class="pageList">
                 <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">6</a></li>
             </ul>
         </div>
     </content>
@@ -52,228 +217,41 @@
     </footer>
 </div>
 <script type="text/javascript">
-jQuery(document).ready(function($) {
-    var config = {
-        apiKey: "AIzaSyDTKjj1K5M9xELXNfxPsfkmnc19RBVThZY",
-        authDomain: "votingtaiwanlandscape.firebaseapp.com",
-        databaseURL: "https://votingtaiwanlandscape.firebaseio.com",
-        storageBucket: "gs://votingtaiwanlandscape.appspot.com/"
-    };
-    firebase.initializeApp(config);
-    readPost();
-
-    function readPost() {
-        var dataRef = firebase.database().ref('post').orderByKey().limitToLast(9);
-        dataRef.on('child_added', function(data) {
-            var html = createElement(data.key, data.val().postTitle, data.val().postImage, data.val().postVote);
-            $('.list').prepend(html);
-        })
-    }
-
-    function createElement(postKey, postTitle, postImg, postVote) {
-        var html = '<li>\
-                    <a href="#" onclick="showInfo(' + postKey + ')">\
-                        <div class="voteInfo">\
-                            <img src="' + postImg + '">\
-                            <div class="detail">\
-                                <p class="workName">' + postTitle + '</p>\
-                            </div>\
-                        </div>\
-                    </a>\
-                    <div class="voteNow">\
-                        <a class="voteThis" href="#" onclick="voteThis(' + postKey + ')">我要投票</a>\
-                        <span>總票數: ' + postVote + '</span>\
-                    </div>\
-                </li>';
-        return html
-
-    }
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+  type: 'horizontalBar',
+  data: {
+    labels: ['台北101', '大崙山', '東眼山'],
+    datasets: [{
+      backgroundColor: [
+      'rgba(255, 0, 0, 0.2)',
+      'rgba(255, 0, 0, 0.4)',
+      'rgba(255, 0, 0, 0.6)',
+      ],
+      borderWidth: 0,
+      label: '票數',
+      data: [500, 200, 300, 0]
+    }]
+  }
 });
-var newImageFile, newNo;
-var chart = c3.generate({
-    bindto: '#votingStatus',
-    data: {
-        columns: [
-            ['data1', 80, 70, 50, 30, 10, 5],
-        ],
-        types: {
-            data1: 'bar',
-        }
-    },
-    axis: {
-        rotated: true
-    }
-});
-
-function showInfo(id) {
-    var html;
-    var detalRef = firebase.database().ref('post/' + id + '/');
-    detalRef.on('value', function(data) {
-        html = '<div>\
-            <img src="' + data.val().postImage + '" width="100%">\
-            <p id="workID">作品編號: ' + id + '</p>\
-            <p id="workName">作品名稱: ' + data.val().postTitle + '</p>\
-            <p>作品描述:</p>\
-            <p id="workDicpt">' + data.val().postDecpt + '</p>\
-            <a class="voteThis right enlarge" href="#" onclick="voteThis(' + id + ')">我要投票</a>\
-        </div>'
-    })
+</script>
+<script type="text/javascript">
+function showInfo() {
     swal({
         title: "",
-        html: html,
+        html: '<div>\
+            <img src="img/test_full.jpg" width="100%">\
+            <p id="workID">作品編號: 001</p>\
+            <p id="workName">作品名稱: 大崙山</p>\
+            <p>作品描述:</p>\
+            <p id="workDicpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\
+            <a class="voteThis right enlarge" href="#" onclick="voteThis()">我要投票</a>\
+        </div>',
         showConfirmButton: false,
         allowEscapeKey: false,
         width: 720,
         padding: 50
     })
-}
-
-function voteThis(id) {
-    var text = '確定要投 ' + id + ' 號一票';
-    swal({
-        title: '投票',
-        text: text,
-        type: 'info',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '確定要投',
-        cancelButtonText: '我考慮一下'
-    }).then(function() {
-        firebase.database().ref('/post/' + id + '/postVote').transaction(function(currentCount) {
-            return currentCount + 1;
-        });
-        swal(
-            '投票成功！',
-            '已經成功將神聖的一票投給 ' + id + ' 號了',
-        )
-    })
-}
-
-function newPost() {
-    swal({
-        title: '先上傳圖片',
-        input: 'file',
-        inputAttributes: {
-            accept: 'image/*'
-        }
-    }).then(function(file) {
-        var reader = new FileReader
-        reader.onload = function(e) {
-            var html = '<form action="#" enctype="multipart/form-data" >\
-                    <table class="newPost">\
-                        <tr>\
-                            <td colspan="2" id="previewArea"><img id="preview_img" src="' + e.target.result + '"/></td>\
-                        </tr>\
-                        <tr>\
-                            <td>作品名稱</td>\
-                            <td><input type="text" name="postTitle" id="postTitle"maxlength="10"></td>\
-                        </tr>\
-                        <tr>\
-                            <td>作品描述</td>\
-                            <td><textarea rows="5" name="postDecpt" class="decpt"></textarea></td>\
-                        </tr>\
-                    </table>\
-                </form>';
-            newImageFile = $('#preview_img').croppie({
-                viewport: {
-                    width: 400,
-                    height: 400,
-                    type: 'square'
-                },
-                boundary: {
-                    width: 400,
-                    height: 400
-                },
-            });
-            swal({
-                title: "加入戰局",
-                html: html,
-                showConfirmButton: true,
-                allowEscapeKey: false,
-                width: 540,
-                padding: 50,
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: '投稿'
-            }).then(function() {
-                createPost();
-                swal(
-                    '投稿完畢',
-                    'success'
-                )
-            })
-
-        }
-        reader.readAsDataURL(file);
-        var ref = firebase.database().ref();
-        ref.once("value").then(function(snapshot) {
-            newNo = snapshot.child('postNoRef').val();
-            newNo = newNo + 1;
-            firebase.database().ref('/postNoRef').transaction(function(currentCount) {
-                return currentCount + 1;
-            });
-        });
-    })
-}
-
-function createPost() {
-    var title = $('#postTitle').val();
-    var decpt = $('.decpt').val();
-    var metadata = {
-        contentType: 'image/jpg'
-    };
-    newImageFile.croppie('result', {
-        type: 'blob',
-        size: {
-            width: 600,
-            height: 600
-        },
-        format: 'png'
-    }).then(function(resp) {
-        var uploadTask = firebase.storage().ref().child('postImg/' + newNo).put(resp, metadata);
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-            function(snapshot) {
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED:
-                        break;
-                    case firebase.storage.TaskState.RUNNING:
-                        break;
-                }
-            },
-            function(error) {
-                switch (error.code) {
-                    case 'storage/unauthorized':
-                        // User doesn't have permission to access the object
-                        break;
-                    case 'storage/canceled':
-                        // User canceled the upload
-                        break;
-                    case 'storage/unknown':
-                        // Unknown error occurred, inspect error.serverResponse
-                        break;
-                }
-            },
-            function() {
-                // Upload completed successfully, now we can get the download URL
-                var downloadURL = uploadTask.snapshot.downloadURL;
-                // A post entry.
-                var postData = {
-                    postTitle: title,
-                    postDecpt: decpt,
-                    postImage: downloadURL,
-                    postUser: null,
-                    postVote: 0
-                };
-
-                var sets = {};
-                sets['/post/' + newNo] = postData;
-                firebase.database().ref().update(sets);
-                newImageFile = null;
-            });
-    })
-
-
 }
 </script>
 
