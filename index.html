@@ -29,7 +29,7 @@
     <content>
         <div class="nowVote">
             <h2 class="title">目前戰績</h2>
-            <div id="votingStatus"></div>
+           <canvas id="myChart" width="750" height="250"></canvas>
         </div>
         <div class="voteArea">
             <h2 class="title">參賽作品</h2>
@@ -88,19 +88,22 @@ jQuery(document).ready(function($) {
     }
 });
 var newImageFile, newNo;
-var chart = c3.generate({
-    bindto: '#votingStatus',
-    data: {
-        columns: [
-            ['data1', 80, 70, 50, 30, 10, 5],
-        ],
-        types: {
-            data1: 'bar',
-        }
-    },
-    axis: {
-        rotated: true
-    }
+ var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+  type: 'horizontalBar',
+  data: {
+    labels: ['台北101', '大崙山', '東眼山'],
+    datasets: [{
+      backgroundColor: [
+      'rgba(255, 0, 0, 0.2)',
+      'rgba(255, 0, 0, 0.4)',
+      'rgba(255, 0, 0, 0.6)',
+      ],
+      borderWidth: 0,
+      label: '票數',
+      data: [500, 200, 300, 0]
+    }]
+  }
 });
 
 function showInfo(id) {
