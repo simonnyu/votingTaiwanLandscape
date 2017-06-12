@@ -160,9 +160,8 @@ function newPost() {
         reader.onload = function(e) {
             var html = '<form action="#" enctype="multipart/form-data" >\
                     <table class="newPost">\
-                        <input type="hidden" name="imgCode" value="' + e.target.result + '">\
                         <tr>\
-                            <td colspan="2" id="previewArea"><img width="100%" id="preview" src="' + e.target.result + '"/></td>\
+                            <td colspan="2" id="previewArea"><img id="preview" src="' + e.target.result + '"/></td>\
                         </tr>\
                         <tr>\
                             <td>作品名稱</td>\
@@ -199,7 +198,7 @@ function newPost() {
                 boundary: {
                     width: 400,
                     height: 400
-                }
+                },
             });
         }
         reader.readAsDataURL(file);
@@ -222,11 +221,7 @@ function createPost() {
     };
     newImageFile.croppie('result', {
         type: 'blob',
-        size: {
-            width: 400,
-            height: 400
-        },
-        formate: 'jpg'
+        format: 'jpeg'
     }).then(function(resp) {
         var uploadTask = firebase.storage().ref().child('postImg/' + newNo).put(resp, metadata);
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
