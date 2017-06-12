@@ -3,15 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="c3.min.css" rel="stylesheet" type="text/css">
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script type="text/javascript" src="Chart.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="c3.min.js"></script>
-    <script src="sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="sweetalert2.min.css">
-    <link rel="stylesheet" type="text/css" href="all.css">
-    <title>台灣自然美景爭霸戰</title>
+    <<<<<<< HEAD=======< script type="text/javascript" src="Chart.js">
+        </script>
+        >>>>>>> parent of 85ebb08... bug fix
+        <link href="c3.min.css" rel="stylesheet" type="text/css">
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script type="text/javascript" src="Chart.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="c3.min.js"></script>
+        <script src="sweetalert2.min.js"></script>
+        <<<<<<< HEAD=======< script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.4.0/croppie.js">
+            </script>
+            <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-storage.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
+            <link rel="stylesheet" href="croppie.css" /> >>>>>>> parent of 85ebb08... bug fix
+            <link rel="stylesheet" href="sweetalert2.min.css">
+            <link rel="stylesheet" type="text/css" href="all.css">
+            <title>台灣自然美景爭霸戰</title>
 </head>
 <div class="wrap">
     <header>
@@ -24,222 +35,91 @@
         <div class="nowVote">
             <h2 class="title">目前戰績</h2>
             <canvas id="myChart" width="750" height="250"></canvas>
-        </div>
-        <div class="voteArea">
-            <h2 class="title">參賽作品</h2>
-            <ul class="list">
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" onclick="showInfo()">
-                        <div class="voteInfo">
-                            <img src="img/test.jpg">
-                            <div class="detail">
-                                <p class="workName">作品名稱</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="voteNow">
-                        <a class="voteThis" href="#" onclick="voteThis()">我要投票</a>
-                        <span>總票數: 80</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="clear"></div>
-        <div class="page">
-            <ul class="pageList">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-            </ul>
-        </div>
+            <div class="voteArea">
+                <h2 class="title">參賽作品</h2>
+                <ul class="list">
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <div class="page">
+                <ul class="pageList">
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                </ul>
+            </div>
     </content>
     <hr/>
     <footer>
         <p>Copyright© 2017 國立高雄大學資訊管理學系 All Right Reserved.</p>
         <p><a class="footerLink" href="http://www.im.nuk.edu.tw" target="_blank">國立高雄大學資訊管理學系</a> | <a class="footerLink" href="https://www.facebook.com/imgroupisgood/" target="_blank">Facebook 粉絲專頁</a></p>
     </footer>
-</div>
-<script type="text/javascript">
+    </div>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        var config = {
+            apiKey: "AIzaSyDTKjj1K5M9xELXNfxPsfkmnc19RBVThZY",
+            authDomain: "votingtaiwanlandscape.firebaseapp.com",
+            databaseURL: "https://votingtaiwanlandscape.firebaseio.com",
+            storageBucket: "gs://votingtaiwanlandscape.appspot.com/"
+        };
+        firebase.initializeApp(config);
+        readPost();
+
+        function readPost() {
+            var dataRef = firebase.database().ref('post').orderByKey().limitToLast(9);
+            dataRef.on('child_added', function(data) {
+                var html = createElement(data.key, data.val().postTitle, data.val().postImage, data.val().postVote);
+                $('.list').prepend(html);
+            })
+        }
+
+        function createElement(postKey, postTitle, postImg, postVote) {
+            var html = '<li>\
+                    <a href="#" onclick="showInfo(' + postKey + ')">\
+                        <div class="voteInfo">\
+                            <img src="' + postImg + '">\
+                            <div class="detail">\
+                                <p class="workName">' + postTitle + '</p>\
+                            </div>\
+                        </div>\
+                    </a>\
+                    <div class="voteNow">\
+                        <a class="voteThis" href="#" onclick="voteThis(' + postKey + ')">我要投票</a>\
+                        <span>總票數: ' + postVote + '</span>\
+                    </div>\
+                </li>';
+            return html
+
+        }
+    });
+    var newImageFile, newNo;
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
-  type: 'horizontalBar',
-  data: {
-    labels: ['台北101', '大崙山', '東眼山'],
-    datasets: [{
-      backgroundColor: [
-      'rgba(255, 0, 0, 0.2)',
-      'rgba(255, 0, 0, 0.4)',
-      'rgba(255, 0, 0, 0.6)',
-      ],
-      borderWidth: 0,
-      label: '票數',
-      data: [500, 200, 300, 0]
-    }]
-  }
-});
-</script>
-<script type="text/javascript">
-function showInfo() {
-    swal({
-        title: "",
-        html: '<div>\
+        type: 'horizontalBar',
+        data: {
+            labels: ['台北101', '大崙山', '東眼山'],
+            datasets: [{
+                backgroundColor: [
+                    'rgba(255, 0, 0, 0.2)',
+                    'rgba(255, 0, 0, 0.4)',
+                    'rgba(255, 0, 0, 0.6)',
+                ],
+                borderWidth: 0,
+                label: '票數',
+                data: [500, 200, 300, 0]
+            }]
+        }
+    });
+    </script>
+    <script type="text/javascript">
+    function showInfo() {
+        swal({
+            title: "",
+            html: '<div>\
             <img src="img/test_full.jpg" width="100%">\
             <p id="workID">作品編號: 001</p>\
             <p id="workName">作品名稱: 大崙山</p>\
@@ -247,15 +127,15 @@ function showInfo() {
             <p id="workDicpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\
             <a class="voteThis right enlarge" href="#" onclick="voteThis()">我要投票</a>\
         </div>',
-        showConfirmButton: false,
-        allowEscapeKey: false,
-        width: 720,
-        padding: 50
-    })
-}
-</script>
+            showConfirmButton: false,
+            allowEscapeKey: false,
+            width: 720,
+            padding: 50
+        })
+    }
+    </script>
 
-<body>
-</body>
+    <body>
+    </body>
 
 </html>
