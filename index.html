@@ -228,6 +228,10 @@ function createPost() {
     };
     newImageFile.croppie('result', {
         type: 'blob',
+        size: {
+            width: 400,
+            height: 400
+        },
         format: 'png'
     }).then(function(resp) {
         var uploadTask = firebase.storage().ref().child('postImg/' + newNo).put(resp, metadata);
