@@ -60,6 +60,7 @@
     firebase.initializeApp(config);
    
     var PostQuantity=999;
+    console.log("gello");
     CountPostQuantity();
     readPost(1);
     var PageNum=0;
@@ -75,9 +76,9 @@
         })
     }
     function CountPostQuantity(){
-        $('.pageList').empty();
         var dataRef = firebase.database().ref('post').orderByKey();
         dataRef.on('value', function(data) {
+            $('.pageList').empty();
             PostQuantity=data.numChildren();
             console.log(PostQuantity);
             PageNum=Math.ceil(PostQuantity/9);
