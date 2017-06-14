@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -44,12 +44,7 @@ a{
 	}
 }
 
-header{
-	background-image: url("img/header.jpg");
-	background-repeat: no-repeat;
-	height: 320px;
-	position: relative;
-}
+
 content{
 	padding: 0px 10px;
 	display: block;
@@ -62,10 +57,25 @@ footer{
 .clear{
   clear: both
 }
+header{
+	background-image: url("img/header.jpg");
+	background-repeat: no-repeat;
+	height: 320px;
+	position: relative;
+}
+@media (max-width: 768px){
+	header{
+		background-image: url("img/TAIWAN.jpg");
+		background-size: 750px 250px;
+		height: 220px;
+		margin-bottom: 20px;
+	}
+}
 .headerTitle{
 	position: absolute;
 	top: 123px;
 }
+
 .headerTitle h1{
 	background-color: rgba(0,0,0,0.5);
 	display:inline-block;
@@ -73,6 +83,22 @@ footer{
 	text-align: center;
 	color: white;
 	padding: 10px;
+}
+@media (max-width: 768px){
+	.headerTitle{
+		top: 10px;
+		text-align: center;
+		left: 5%;
+		right: 5%;
+	}
+	.headerTitle h1{
+		width:95%;
+	}
+}
+@media (max-width: 414px){
+	.headerTitle h1{
+		font-size: 26px;
+	}
 }
 .title{
 	background-color: gray;
@@ -97,6 +123,22 @@ footer{
 	margin: 10px 3px;
 	background-color: black;
 	border: 1px black;
+}
+@media (max-width: 768px){
+	.sign{
+		background-color: rgba(0,150,150,0.5);
+		right: 36%;
+		left: 36%;
+		width:25%;
+		text-align: center;
+	}
+}
+@media (max-width: 414px){
+	.sign{
+		right: 30%;
+		left: 30%;
+		width:35%;
+	}
 }
 #voteStatus{
 }
@@ -124,13 +166,14 @@ footer{
 .list img{
 	width: 100%;
 }
+
 .voteInfo{
 	height: 228px;
 	position: relative;
 }
 .detail{
 	position: absolute;
-	height: 15%;
+	height: 17%;
 	width: 100%;
 	background: rgba(0,0,0,0.5);
 	left: 0;
@@ -160,6 +203,83 @@ footer{
 	float: right;
 	padding: 5px;
 	margin: 5px 0px;
+}
+@media (max-width: 768px){
+	.list ul{
+		padding: 4%;
+		
+	}
+	.voteInfo{
+		height:  45%;
+	}
+	.detail{
+		top: 78%;
+		height: 20%
+	}
+	.list li{
+		height: 45%;
+		width: 30%;
+		padding:1%;
+	}
+}
+@media(max-width:535px)
+{
+	
+	.detail {
+		top:71%;
+		height:25%;
+	}
+	.detail p{
+		font-size: 16px;
+	}
+	.voteNow span{
+		float: left;
+	}
+	.voteThis{
+		width: 93%;
+		text-align: center;
+	}
+}
+@media(max-width:414px)
+{
+	.list {
+		margin-top: 3%;
+	}
+	.list li{
+		height: 45%;
+		width: 90%;
+	}
+	.detail{
+		top:82.5%;
+		height: 16%
+	}
+	.detail p{
+		font-size: 27px;
+	}
+	.voteThis{
+		font-size: 20px;
+		width: 96.5%;
+		padding-top:4%; 
+		padding-bottom:4%; 
+	}
+	.voteThis:hover{
+		width: 96.5%;
+		padding-top:4%; 
+		padding-bottom:4%; 
+	}
+	.voteNow span{
+		font-size: 20px;
+	}
+}
+@media(max-width: 320px)
+{
+	.detail{
+		top:78.5%;
+		height: 20%
+	}
+	.detail p{
+		font-size: 27px;
+	}
 }
 .workName{
 	position: absolute;
@@ -191,6 +311,7 @@ footer{
 }
 .pageList a:hover{
 	background: orange;
+	cursor: pointer;
 }
 .dialogBackground{
 	background: rgba(20, 20, 20, 0.9);
@@ -242,8 +363,13 @@ footer{
 .newPost{
 	width: 100%;
 }
+.newPost p{
+	position: absolute;
+	bottom: 15%;
+}
 .newPost td{
 	padding: 10px 1%;
+
 }
 .newPost td:first-child{
 	text-align: right;
@@ -254,9 +380,11 @@ footer{
 	width: 78%;
 }
 .newPost input,textarea{
-	width: 100%;
+	width: 80%;
 }
 #previewArea{
 	width: 100%;
+
 }
+
 
