@@ -40,7 +40,6 @@
         <div class="clear"></div>
         <div class="page">
             <ul class="pageList">
-                <li><a href="#">1</a></li>
             </ul>
         </div>
     </content>
@@ -51,7 +50,7 @@
     </footer>
 </div>
 <script type="text/javascript">
-jQuery(document).ready(function($) {
+//jQuery(document).ready(function($) {
     var config = {
         apiKey: "AIzaSyDTKjj1K5M9xELXNfxPsfkmnc19RBVThZY",
         authDomain: "votingtaiwanlandscape.firebaseapp.com",
@@ -59,16 +58,48 @@ jQuery(document).ready(function($) {
         storageBucket: "gs://votingtaiwanlandscape.appspot.com/"
     };
     firebase.initializeApp(config);
-    readPost();
-
-    function readPost() {
-        var dataRef = firebase.database().ref('post').orderByKey().limitToLast(9);
+   
+    var PostQuantity=999;
+    CountPostQuantity();
+    readPost(1);
+    var PageNum=0;
+    function readPost(PageNum) {
+        $('.list').empty();
+        var PostNum=(PageNum-1)*9;
+        PostNum=PostQuantity-PostNum;
+        PostNum=PostNum.toString();
+        var dataRef = firebase.database().ref("post").orderByKey().endAt(PostNum).limitToLast(9);
         dataRef.on('child_added', function(data) {
             var html = createElement(data.key, data.val().postTitle, data.val().postImage, data.val().postVote);
             $('.list').prepend(html);
         })
     }
-
+    function CountPostQuantity(){
+        $('.pageList').empty();
+        var dataRef = firebase.database().ref('post').orderByKey();
+        dataRef.on('value', function(data) {
+            PostQuantity=data.numChildren();
+            console.log(PostQuantity);
+            PageNum=Math.ceil(PostQuantity/9);
+            var html2=createPage(PageNum);
+            $('.pageList').prepend(html2);
+        })
+    }
+    function createPage(PageNum)
+    {
+        var PageNum=PageNum;
+        var page=1;
+        var html2='';
+        while(PageNum>0)
+        {
+            var html2=html2+'<li>\
+                    <a onclick="readPost('+page+')">'+page+'</a>\
+                    </li>';
+            PageNum= PageNum-1;
+            page=page+1;
+        }
+        return html2;
+    }
     function createElement(postKey, postTitle, postImg, postVote) {
         var html = '<li>\
                     <a href="#" onclick="showInfo(' + postKey + ')">\
@@ -87,7 +118,7 @@ jQuery(document).ready(function($) {
         return html
 
     }
-});
+//});
 var newImageFile, newNo;
 var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
@@ -154,7 +185,7 @@ function voteThis(id) {
 
 function newPost() {
     swal({
-        title: '先上傳圖片',
+        title: '上傳台灣美景圖',
         input: 'file',
         inputAttributes: {
             accept: 'image/*'
@@ -170,13 +201,13 @@ function newPost() {
                             <td><input type="text" name="postTitle" id="postTitle"maxlength="10"></td>\
                         </tr>\
                         <tr>\
-                            <td>作品描述</td>\
+                            <td><p>作品描述</p></td>\
                             <td><textarea rows="5" name="postDecpt" class="decpt"></textarea></td>\
                         </tr>\
                     </table>\
                 </form>';
             swal({
-                title: "加入戰局",
+                title: "",
                 html: html,
                 showConfirmButton: true,
                 allowEscapeKey: false,
@@ -188,24 +219,20 @@ function newPost() {
                 createPost();
                 swal(
                     '投稿完畢',
-                    'success'
+                    'Thank you!'
                 )
             })
             newImageFile = $('#preview').croppie({
                 enableExif: true,
                 viewport: {
-                    width: 400,
-                    height: 400,
+                    width: 150,
+                    height: 150,
                     type: 'square'
                 },
                 boundary: {
-                    width: 400,
-                    height: 400
+                    width: 300,
+                    height: 300
                 },
-            });
-            basic.croppie('result', 'html').then(function(html) {
-                // html is div (overflow hidden)
-                // with img positioned inside.
             });
         }
         reader.readAsDataURL(file);
