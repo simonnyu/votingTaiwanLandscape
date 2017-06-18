@@ -172,12 +172,16 @@ header{
 	width: 228px;
 }
 .list img{
-	width: 100%;
+	margin: 0 -50% 0 -50%;
+	display: inline-block;
+	text-align: center;
+    height: 228px;
 }
 
 .voteInfo{
 	height: 228px;
 	position: relative;
+	overflow: hidden;
 }
 .detail{
 	position: absolute;
@@ -370,7 +374,6 @@ header{
 }
 .newPost{
 	width: 100%;
-	margin-left: 3%;
 }
 .newPost p{
 	
@@ -400,9 +403,14 @@ header{
 .newPost input,textarea{
 	width: 80%;
 }
-#previewArea img{
-	width: 430px;
 
+#submitPost{
+	text-align: center;
+	margin-top: 1%;
+	font-size: 20px;
+	background: #66FF66;
+	cursor: pointer;
 }
+
 
 

@@ -9,13 +9,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="c3.min.js"></script>
     <script src="sweetalert2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.4.0/croppie.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
-    <link rel="stylesheet" href="croppie.css" />
     <link rel="stylesheet" href="sweetalert2.min.css">
     <link rel="stylesheet" type="text/css" href="all.css">
     <title>台灣自然美景爭霸戰</title>
@@ -53,150 +51,152 @@
 </div>
 <script type="text/javascript">
 //jQuery(document).ready(function($) {
-    var config = {
-        apiKey: "AIzaSyDTKjj1K5M9xELXNfxPsfkmnc19RBVThZY",
-        authDomain: "votingtaiwanlandscape.firebaseapp.com",
-        databaseURL: "https://votingtaiwanlandscape.firebaseio.com",
-        storageBucket: "gs://votingtaiwanlandscape.appspot.com/"
-    };
-    firebase.initializeApp(config);
-    var PostQuantity1=999;
-    var PageNum1=0;
-    var PostQuantity2=999;
-    var PageNum2=0;
-    var arr = new Array();
-    var ctx = document.getElementById('myChart');
-   
-    readPostbyVote();
-    
-    function readPost(PageNum1) {
-        CountPostQuantity();
-        $('.list').empty();
-        var PostNum=(PageNum1-1)*9;
-        
-        PostNum=PostQuantity1-PostNum;
-        
-        PostNumS=PostNum.toString();
-        console.log(PostNum);
-        if(PostNum<9)
-        {
-            var dataRef = firebase.database().ref("post").orderByKey().endAt(PostNumS).limitToLast(PostNum);
-        }
-        else
-        {
-            var dataRef = firebase.database().ref("post").orderByKey().endAt(PostNumS).limitToLast(9);
-        }
-        
-        dataRef.on('child_added', function(data) {
-            var html = createElement(data.key, data.val().postTitle, data.val().postImage, data.val().postVote);
-            $('.list').prepend(html);
-            console.log(data.key);
-        })
+var config = {
+    apiKey: "AIzaSyDTKjj1K5M9xELXNfxPsfkmnc19RBVThZY",
+    authDomain: "votingtaiwanlandscape.firebaseapp.com",
+    databaseURL: "https://votingtaiwanlandscape.firebaseio.com",
+    storageBucket: "gs://votingtaiwanlandscape.appspot.com/"
+};
+firebase.initializeApp(config);
+var PostQuantity1 = 999;
+var PageNum1 = 0;
+var PostQuantity2 = 999;
+var PageNum2 = 0;
+var arr = new Array();
+var ctx = document.getElementById('myChart');
+
+readPostbyVote();
+
+function readPost(PageNum1) {
+    CountPostQuantity();
+    $('.list').empty();
+    var PostNum = (PageNum1 - 1) * 9;
+
+    PostNum = PostQuantity1 - PostNum;
+
+    PostNumS = PostNum.toString();
+    console.log(PostNum);
+    if (PostNum < 9) {
+        var dataRef = firebase.database().ref("post").orderByKey().endAt(PostNumS).limitToLast(PostNum);
+    } else {
+        var dataRef = firebase.database().ref("post").orderByKey().endAt(PostNumS).limitToLast(9);
     }
-    function readPostbyVote() {
-        var dataRef = firebase.database().ref("post").orderByChild("postVote");
-        dataRef.once('value', function(data){
-            data.forEach(function (childData){
-            arr.push({"id":childData.key,"title":childData.val().postTitle,"img":childData.val().postImage, "vote":childData.val().postVote});
+
+    dataRef.on('child_added', function(data) {
+        var html = createElement(data.key, data.val().postTitle, data.val().postImage, data.val().postVote);
+        $('.list').prepend(html);
+        console.log(data.key);
+    })
+}
+
+function readPostbyVote() {
+    var dataRef = firebase.database().ref("post").orderByChild("postVote");
+    dataRef.once('value', function(data) {
+        data.forEach(function(childData) {
+            arr.push({
+                "id": childData.key,
+                "title": childData.val().postTitle,
+                "img": childData.val().postImage,
+                "vote": childData.val().postVote
             });
-            arr.reverse();
         });
-        if(typeof arr[PostQuantity2]!= 'undefined')
-        {
-            showPostbyVote(1);
-             var myChart = new Chart(ctx, {
-              type: 'horizontalBar',
-              data: {
-                labels: [arr[0].title, arr[1].title, arr[2].title],//放postTitle
+        arr.reverse();
+    });
+    if (typeof arr[PostQuantity2] != 'undefined') {
+        showPostbyVote(1);
+        var myChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: [arr[0].title, arr[1].title, arr[2].title], //放postTitle
                 datasets: [{
-                  backgroundColor: [
-                  'rgba(255, 0, 0, 0.2)',
-                  'rgba(255, 0, 0, 0.4)',
-                  'rgba(255, 0, 0, 0.6)',
-                  ],
-                  borderWidth: 0,
-                  label: '票數',
-                  data: [arr[0].vote, arr[1].vote, arr[2].vote, 0]//放postVote
+                    backgroundColor: [
+                        'rgba(255, 0, 0, 0.2)',
+                        'rgba(255, 0, 0, 0.4)',
+                        'rgba(255, 0, 0, 0.6)',
+                    ],
+                    borderWidth: 0,
+                    label: '票數',
+                    data: [arr[0].vote, arr[1].vote, arr[2].vote, 0] //放postVote
                 }]
-              }
-            });
-        } 
-        else
-        {
-            setTimeout(function(){readPostbyVote();}, 50);
-        }
+            }
+        });
+    } else {
+        setTimeout(function() {
+            readPostbyVote();
+        }, 50);
     }
-    function showPostbyVote(PageNum2){
-        CountPostQuantity2();
-        $('.list').empty();
-        var PostNum=PageNum2*9;
-        PostNum=PostNum.toString();
-        var i=PostNum-9;
-        if(PostNum>PostQuantity2)
-        {
-            PostNum=PostQuantity2;
-        }
-        for(i; PostNum>i; i++)
-        {
-            var html = createElement(arr[i].id, arr[i].title, arr[i].img, arr[i].vote);
-            $('.list').append(html);
-        }  
+}
+
+function showPostbyVote(PageNum2) {
+    CountPostQuantity2();
+    $('.list').empty();
+    var PostNum = PageNum2 * 9;
+    PostNum = PostNum.toString();
+    var i = PostNum - 9;
+    if (PostNum > PostQuantity2) {
+        PostNum = PostQuantity2;
     }
-    function CountPostQuantity(){
-        var dataRef = firebase.database().ref('post').orderByKey();
-        dataRef.on('value', function(data) {
-            $('.pageList').empty();
-            PostQuantity1=data.numChildren();
-            PageNum1=Math.ceil(PostQuantity1/9);
-            var html2=createPage(PageNum1);
-            $('.pageList').append(html2);
-        })
+    for (i; PostNum > i; i++) {
+        var html = createElement(arr[i].id, arr[i].title, arr[i].img, arr[i].vote);
+        $('.list').append(html);
     }
-    function CountPostQuantity2(){
-        var dataRef = firebase.database().ref('post').orderByKey();
-        dataRef.on('value', function(data) {
-            $('.pageList').empty();
-            PostQuantity2=data.numChildren();
-            PageNum2=Math.ceil(PostQuantity2/9);
-            var html2=createPage2(PageNum2);
-            $('.pageList').append(html2);
-        })
-    }
-    function createPage(PageNum1)
-    {
-        var PageNum=PageNum1;
-        var page=1;
-        var html2='';
-        while(PageNum>0)
-        {
-            var html2=html2+'<li>\
-                <a onclick="readPost('+page+')">'+page+'</a>\
+}
+
+function CountPostQuantity() {
+    var dataRef = firebase.database().ref('post').orderByKey();
+    dataRef.on('value', function(data) {
+        $('.pageList').empty();
+        PostQuantity1 = data.numChildren();
+        PageNum1 = Math.ceil(PostQuantity1 / 9);
+        var html2 = createPage(PageNum1);
+        $('.pageList').append(html2);
+    })
+}
+
+function CountPostQuantity2() {
+    var dataRef = firebase.database().ref('post').orderByKey();
+    dataRef.on('value', function(data) {
+        $('.pageList').empty();
+        PostQuantity2 = data.numChildren();
+        PageNum2 = Math.ceil(PostQuantity2 / 9);
+        var html2 = createPage2(PageNum2);
+        $('.pageList').append(html2);
+    })
+}
+
+function createPage(PageNum1) {
+    var PageNum = PageNum1;
+    var page = 1;
+    var html2 = '';
+    while (PageNum > 0) {
+        var html2 = html2 + '<li>\
+                <a onclick="readPost(' + page + ')">' + page + '</a>\
                 </li>';
-            PageNum= PageNum-1;
-            page=page+1;
-        }
-        return html2;
+        PageNum = PageNum - 1;
+        page = page + 1;
     }
-    function createPage2(PageNum2)
-    {
-        var PageNum=PageNum2;
-        var page=1;
-        var html2='';
-        while(PageNum>0)
-        {
-            var html2=html2+'<li>\
-                <a onclick="showPostbyVote('+page+')">'+page+'</a>\
+    return html2;
+}
+
+function createPage2(PageNum2) {
+    var PageNum = PageNum2;
+    var page = 1;
+    var html2 = '';
+    while (PageNum > 0) {
+        var html2 = html2 + '<li>\
+                <a onclick="showPostbyVote(' + page + ')">' + page + '</a>\
                 </li>';
-            PageNum= PageNum-1;
-            page=page+1;
-        }
-        return html2;
+        PageNum = PageNum - 1;
+        page = page + 1;
     }
-    function createElement(postKey, postTitle, postImg, postVote) {
-        var html = '<li>\
+    return html2;
+}
+
+function createElement(postKey, postTitle, postImg, postVote) {
+    var html = '<li>\
                     <a href="#" onclick="showInfo(' + postKey + ')">\
                         <div class="voteInfo">\
-                            <img src="' + postImg + '">\
+                            <img class="thumb" src="' + postImg + '" />\
                             <div class="detail">\
                                 <p class="workName">' + postTitle + '</p>\
                             </div>\
@@ -207,13 +207,25 @@
                         <span>總票數: ' + postVote + '</span>\
                     </div>\
                 </li>';
-        return html
+    return html
 
-    }
+}
 //});
 var newImageFile, newNo;
 
-    
+function stripHTML(input) {
+    if (input) {
+        return input
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    } else {
+        return input
+    }
+}
+
 function showInfo(id) {
     var html;
     var detalRef = firebase.database().ref('post/' + id + '/');
@@ -270,7 +282,7 @@ function newPost() {
         var reader = new FileReader
         reader.onload = function(e) {
             var html = '<form action="#" enctype="multipart/form-data" >\
-                    <div id="previewArea"><img id="preview" src="' + e.target.result + '"/></div>\
+                    <div id="previewArea"><img id="preview" src="' + e.target.result + '" width="100%"/></div>\
                     <table class="newPost">\
                         <tr>\
                             <td>作品名稱</td>\
@@ -298,18 +310,7 @@ function newPost() {
                 )
             })
 
-            newImageFile = $('#preview').croppie({
-                enableExif: true,
-                viewport: {
-                    width: 150,
-                    height: 150,
-                    type: 'square'
-                },
-                boundary: {
-                    width: 300,
-                    height: 300
-                },
-            });
+            newImageFile = dataURItoBlob(e.target.result);
         }
         reader.readAsDataURL(file);
         var ref = firebase.database().ref();
@@ -323,62 +324,76 @@ function newPost() {
     })
 }
 
+function dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {
+        type: mimeString
+    });
+}
+
 function createPost() {
     var title = $('#postTitle').val();
     var decpt = $('.decpt').val();
+    decpt = stripHTML(decpt);
     var metadata = {
         contentType: 'image/jpg'
     };
-    newImageFile.croppie('result', {
-        type: 'blob',
-        size: {
-            width: 400,
-            height: 400
+    var uploadTask = firebase.storage().ref().child('postImg/' + newNo).put(newImageFile, metadata);
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        function(snapshot) {
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED:
+                    break;
+                case firebase.storage.TaskState.RUNNING:
+                    break;
+            }
         },
-        format: 'png'
-    }).then(function(resp) {
-        var uploadTask = firebase.storage().ref().child('postImg/' + newNo).put(resp, metadata);
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-            function(snapshot) {
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED:
-                        break;
-                    case firebase.storage.TaskState.RUNNING:
-                        break;
-                }
-            },
-            function(error) {
-                switch (error.code) {
-                    case 'storage/unauthorized':
-                        // User doesn't have permission to access the object
-                        break;
-                    case 'storage/canceled':
-                        // User canceled the upload
-                        break;
-                    case 'storage/unknown':
-                        // Unknown error occurred, inspect error.serverResponse
-                        break;
-                }
-            },
-            function() {
-                // Upload completed successfully, now we can get the download URL
-                var downloadURL = uploadTask.snapshot.downloadURL;
-                // A post entry.
-                var postData = {
-                    postTitle: title,
-                    postDecpt: decpt,
-                    postImage: downloadURL,
-                    postUser: null,
-                    postVote: 0
-                };
+        function(error) {
+            switch (error.code) {
+                case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    break;
+                case 'storage/canceled':
+                    // User canceled the upload
+                    break;
+                case 'storage/unknown':
+                    // Unknown error occurred, inspect error.serverResponse
+                    break;
+            }
+        },
+        function() {
+            // Upload completed successfully, now we can get the download URL
+            var downloadURL = uploadTask.snapshot.downloadURL;
+            // A post entry.
+            var postData = {
+                postTitle: title,
+                postDecpt: decpt,
+                postImage: downloadURL,
+                postUser: null,
+                postVote: 0
+            };
 
-                var sets = {};
-                sets['/post/' + newNo] = postData;
-                firebase.database().ref().update(sets);
-                newImageFile = null;
-            });
-    })
+            var sets = {};
+            sets['/post/' + newNo] = postData;
+            firebase.database().ref().update(sets);
+            newImageFile = null;
+        });
 
 
 }
