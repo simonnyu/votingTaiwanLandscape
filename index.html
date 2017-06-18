@@ -68,13 +68,14 @@ var currentUser = "";
 var currentUserName = "";
 var voted = "";
 firebase.auth().onAuthStateChanged(function(user) {
-	if(user){
-		currentUser = user.uid;
+    if (user) {
+        currentUser = user.uid;
         currentUserName = user.displayName;
         firebase.database().ref('users/' + currentUser + '/userVoted').once('value').then(function(snapshot) {
-                    voted = snapshot.val();});
-	}
-}
+            voted = snapshot.val();
+        });
+    }
+});
 readPostbyVote();
 
 function readPost(PageNum1) {
@@ -279,7 +280,7 @@ function voteThis(id) {
             if ((firebase.database().ref('users/' + currentUser + '/userVoted').once('value').then(function(snapshot) {
                     voted = snapshot.val();
                 })) && (voted == 0)) {
-            	var text = '<p>確定要投 ' + id + ' 號一票？</p><p>Login as ' + currentUserName + '</>';
+                var text = '<p>確定要投 ' + id + ' 號一票？</p><p>Login as ' + currentUserName + '</>';
                 swal({
                     title: '投票',
                     html: text,
