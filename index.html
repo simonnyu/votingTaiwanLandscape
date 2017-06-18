@@ -60,22 +60,35 @@
         storageBucket: "gs://votingtaiwanlandscape.appspot.com/"
     };
     firebase.initializeApp(config);
-    var PostQuantity=999;
-    var PageNum=0;
+    var PostQuantity1=999;
+    var PageNum1=0;
+    var PostQuantity2=999;
+    var PageNum2=0;
     var arr = new Array();
     readPostbyVote();
-    CountPostQuantity();
     
-    function readPost(PageNum) {
+    function readPost(PageNum1) {
         CountPostQuantity();
         $('.list').empty();
-        var PostNum=(PageNum-1)*9;
-        PostNum=PostQuantity-PostNum;
-        PostNum=PostNum.toString();
-        var dataRef = firebase.database().ref("post").orderByKey().endAt(PostNum).limitToLast(9);
+        var PostNum=(PageNum1-1)*9;
+        
+        PostNum=PostQuantity1-PostNum;
+        
+        PostNumS=PostNum.toString();
+        console.log(PostNum);
+        if(PostNum<9)
+        {
+            var dataRef = firebase.database().ref("post").orderByKey().endAt(PostNumS).limitToLast(PostNum);
+        }
+        else
+        {
+            var dataRef = firebase.database().ref("post").orderByKey().endAt(PostNumS).limitToLast(9);
+        }
+        
         dataRef.on('child_added', function(data) {
             var html = createElement(data.key, data.val().postTitle, data.val().postImage, data.val().postVote);
-            $('.list').append(html);
+            $('.list').prepend(html);
+            console.log(data.key);
         })
     }
     function readPostbyVote() {
@@ -86,24 +99,24 @@
             });
             arr.reverse();
         });
-        if(typeof arr[PostQuantity]!= 'undefined')
+        if(typeof arr[PostQuantity2]!= 'undefined')
         {
             showPostbyVote(1);
         } 
         else
         {
-            setTimeout(function(){readPostbyVote();}, 100);
+            setTimeout(function(){readPostbyVote();}, 50);
         }
     }
-    function showPostbyVote(PageNum){
+    function showPostbyVote(PageNum2){
         CountPostQuantity2();
         $('.list').empty();
-        var PostNum=PageNum*9;
+        var PostNum=PageNum2*9;
         PostNum=PostNum.toString();
         var i=PostNum-9;
-        if(PostNum>PostQuantity)
+        if(PostNum>PostQuantity2)
         {
-            PostNum=PostQuantity;
+            PostNum=PostQuantity2;
         }
         for(i; PostNum>i; i++)
         {
@@ -115,9 +128,9 @@
         var dataRef = firebase.database().ref('post').orderByKey();
         dataRef.on('value', function(data) {
             $('.pageList').empty();
-            PostQuantity=data.numChildren();
-            PageNum=Math.ceil(PostQuantity/9);
-            var html2=createPage(PageNum);
+            PostQuantity1=data.numChildren();
+            PageNum1=Math.ceil(PostQuantity1/9);
+            var html2=createPage(PageNum1);
             $('.pageList').append(html2);
         })
     }
@@ -125,15 +138,15 @@
         var dataRef = firebase.database().ref('post').orderByKey();
         dataRef.on('value', function(data) {
             $('.pageList').empty();
-            PostQuantity=data.numChildren();
-            PageNum=Math.ceil(PostQuantity/9);
-            var html2=createPage2(PageNum);
+            PostQuantity2=data.numChildren();
+            PageNum2=Math.ceil(PostQuantity2/9);
+            var html2=createPage2(PageNum2);
             $('.pageList').append(html2);
         })
     }
-    function createPage(PageNum)
+    function createPage(PageNum1)
     {
-        var PageNum=PageNum;
+        var PageNum=PageNum1;
         var page=1;
         var html2='';
         while(PageNum>0)
@@ -146,9 +159,9 @@
         }
         return html2;
     }
-    function createPage2(PageNum)
+    function createPage2(PageNum2)
     {
-        var PageNum=PageNum;
+        var PageNum=PageNum2;
         var page=1;
         var html2='';
         while(PageNum>0)
