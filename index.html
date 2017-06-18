@@ -34,6 +34,8 @@
         </div>
         <div class="voteArea">
             <h2 class="title">參賽作品</h2>
+            <input type="button" value="時間排序" name="orderbytime" onclick="readPost(1)">
+            <input type="button" value="票數排序" name="orderbyvote" onclick="readPostbyVote(1)">
             <ul class="list">
             </ul>
         </div>
@@ -58,13 +60,14 @@
         storageBucket: "gs://votingtaiwanlandscape.appspot.com/"
     };
     firebase.initializeApp(config);
-   
     var PostQuantity=999;
-    console.log("gello");
-    CountPostQuantity();
-    readPost(1);
     var PageNum=0;
+    var arr = new Array();
+    readPostbyVote();
+    CountPostQuantity();
+    
     function readPost(PageNum) {
+        CountPostQuantity();
         $('.list').empty();
         var PostNum=(PageNum-1)*9;
         PostNum=PostQuantity-PostNum;
@@ -72,18 +75,60 @@
         var dataRef = firebase.database().ref("post").orderByKey().endAt(PostNum).limitToLast(9);
         dataRef.on('child_added', function(data) {
             var html = createElement(data.key, data.val().postTitle, data.val().postImage, data.val().postVote);
-            $('.list').prepend(html);
+            $('.list').append(html);
         })
+    }
+    function readPostbyVote() {
+        var dataRef = firebase.database().ref("post").orderByChild("postVote");
+        dataRef.once('value', function(data){
+            data.forEach(function (childData){
+            arr.push({"id":childData.key,"title":childData.val().postTitle,"img":childData.val().postImage, "vote":childData.val().postVote});
+            });
+            arr.reverse();
+        });
+        if(typeof arr[PostQuantity]!= 'undefined')
+        {
+            showPostbyVote(1);
+        } 
+        else
+        {
+            setTimeout(function(){readPostbyVote();}, 100);
+        }
+    }
+    function showPostbyVote(PageNum){
+        CountPostQuantity2();
+        $('.list').empty();
+        var PostNum=PageNum*9;
+        PostNum=PostNum.toString();
+        var i=PostNum-9;
+        if(PostNum>PostQuantity)
+        {
+            PostNum=PostQuantity;
+        }
+        for(i; PostNum>i; i++)
+        {
+            var html = createElement(arr[i].id, arr[i].title, arr[i].img, arr[i].vote);
+            $('.list').append(html);
+        }  
     }
     function CountPostQuantity(){
         var dataRef = firebase.database().ref('post').orderByKey();
         dataRef.on('value', function(data) {
             $('.pageList').empty();
             PostQuantity=data.numChildren();
-            console.log(PostQuantity);
             PageNum=Math.ceil(PostQuantity/9);
             var html2=createPage(PageNum);
-            $('.pageList').prepend(html2);
+            $('.pageList').append(html2);
+        })
+    }
+    function CountPostQuantity2(){
+        var dataRef = firebase.database().ref('post').orderByKey();
+        dataRef.on('value', function(data) {
+            $('.pageList').empty();
+            PostQuantity=data.numChildren();
+            PageNum=Math.ceil(PostQuantity/9);
+            var html2=createPage2(PageNum);
+            $('.pageList').append(html2);
         })
     }
     function createPage(PageNum)
@@ -94,8 +139,23 @@
         while(PageNum>0)
         {
             var html2=html2+'<li>\
-                    <a onclick="readPost('+page+')">'+page+'</a>\
-                    </li>';
+                <a onclick="readPost('+page+')">'+page+'</a>\
+                </li>';
+            PageNum= PageNum-1;
+            page=page+1;
+        }
+        return html2;
+    }
+    function createPage2(PageNum)
+    {
+        var PageNum=PageNum;
+        var page=1;
+        var html2='';
+        while(PageNum>0)
+        {
+            var html2=html2+'<li>\
+                <a onclick="showPostbyVote('+page+')">'+page+'</a>\
+                </li>';
             PageNum= PageNum-1;
             page=page+1;
         }
@@ -199,11 +259,10 @@ function newPost() {
                     <table class="newPost">\
                         <tr>\
                             <td>作品名稱</td>\
-                            <td><input type="text" name="postTitle" id="postTitle"maxlength="10"></td>\
+                            <td><input type="text" class="imagename" name="postTitle" id="postTitle"maxlength="10"></td>\
                         </tr>\
                         <tr>\
-                            <td><p>作品描述</p></td>\
-                            <td><textarea rows="5" name="postDecpt" class="decpt"></textarea></td>\
+                            <td><textarea placeholder="作品描述..." rows="5"  name="postDecpt" class="decpt"></textarea></td>\
                         </tr>\
                     </table>\
                 </form>';
@@ -223,6 +282,7 @@ function newPost() {
                     'Thank you!'
                 )
             })
+
             newImageFile = $('#preview').croppie({
                 enableExif: true,
                 viewport: {
