@@ -266,7 +266,8 @@ function voteThis(id) {
             });
         } else {
         	currentUser = user.uid;
-            if (firebase.database().ref('users/'+ currentUser +'/userVoted').once('value').then(function (snapshot){ snapshot.val()}) != '0') {
+        	var voted = "";
+            if ((voted=firebase.database().ref('users/'+ currentUser +'/userVoted').once('value').then(function (snapshot){ voted = snapshot.val()})) != '0') {
             	swal({
             		title: "一人一票",
             		html: "你已經投過票囉！",
