@@ -67,7 +67,14 @@ var ctx = document.getElementById('myChart');
 var currentUser = "";
 var currentUserName = "";
 var voted = "";
-
+firebase.auth().onAuthStateChanged(function(user) {
+	if(user){
+		currentUser = user.uid;
+        currentUserName = user.displayName;
+        firebase.database().ref('users/' + currentUser + '/userVoted').once('value').then(function(snapshot) {
+                    voted = snapshot.val();});
+	}
+}
 readPostbyVote();
 
 function readPost(PageNum1) {
