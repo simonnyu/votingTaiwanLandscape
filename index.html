@@ -452,7 +452,7 @@ function loginPlease(postId) {
         var token = result.credential.accessToken;
         var user = result.user;
 
-        firebase.database().ref('users/' + user.uid + '/userName/').once("value", function(snapshot) {
+        firebase.database().ref('users/' + user.uid + '/userVoted/').once("value", function(snapshot) {
             if (snapshot.val() == null) {
                 var userData = {
                     userId: user.uid,
@@ -469,6 +469,8 @@ function loginPlease(postId) {
                 }).then(function() {
                     voteThis(postId);
                 });
+            }else{
+            	voted = snapshot.val();
             }
         });
 
