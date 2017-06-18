@@ -265,7 +265,7 @@ function voteThis(id) {
                 loginPlease(id);
             });
         } else {
-        	console.log(user.uid);
+        	currentUser = user.uid;
             if (firebase.database().ref('users/'+ currentUser +'/userVoted').once('value').then(function (snapshot){ snapshot.val()}) != '0') {
             	swal({
             		title: "一人一票",
