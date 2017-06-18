@@ -65,6 +65,7 @@ var PageNum2 = 0;
 var arr = new Array();
 var ctx = document.getElementById('myChart');
 var currentUser = "";
+var voted = "";
 
 readPostbyVote();
 
@@ -266,8 +267,7 @@ function voteThis(id) {
             });
         } else {
         	currentUser = user.uid;
-        	var voted = "";
-            if ((voted=firebase.database().ref('users/'+ currentUser +'/userVoted').once('value').then(function (snapshot){ voted = snapshot.val()})) != '0') {
+            if ((voted=firebase.database().ref('users/'+ currentUser +'/userVoted').once('value').then(function (snapshot){ voted = snapshot.val()})) != 0) {
             	swal({
             		title: "一人一票",
             		html: "你已經投過票囉！",
