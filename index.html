@@ -265,7 +265,8 @@ function voteThis(id) {
                 loginPlease(id);
             });
         } else {
-            if (firebase.database().ref('user/userId/userVoted').once('value').then(function (snapshot){ console.log(snapshot.val())})!= '0') {
+        	console.log(user.uid);
+            if (firebase.database().ref('users/'+ currentUser +'/userVoted').once('value').then(function (snapshot){ snapshot.val()}) != '0') {
             	swal({
             		title: "一人一票",
             		html: "你已經投過票囉！",
