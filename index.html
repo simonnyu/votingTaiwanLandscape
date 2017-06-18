@@ -286,7 +286,7 @@ function voteThis(id) {
                     firebase.database().ref('/post/' + id + '/postVote').transaction(function(currentCount) {
                         return currentCount + 1;
                     });
-                    firebase.database.ref('/user/' + user.uid + '/userVoted').transaction(function(currentCount) {
+                    firebase.database().ref('/user/' + user.uid + '/userVoted').transaction(function(currentCount) {
                         return currentCount + 1;
                     })
                     swal(
