@@ -148,6 +148,14 @@ header{
 .voteArea{
 	text-align: center;
 }
+.voteArea input {
+	margin-top: 1%;
+	font-size: 20px;
+	font-family: 'Noto Sans TC', sans-serif;
+	background: #66FF66;
+	cursor: pointer;
+	
+}
 .list ul{
 	margin: 0px;
 	display: inline-block;
@@ -362,14 +370,24 @@ header{
 }
 .newPost{
 	width: 100%;
+	margin-left: 3%;
 }
 .newPost p{
-	position: absolute;
-	bottom: 15%;
+	
 }
 .newPost td{
-	padding: 10px 1%;
-
+	padding-left: 0px; 
+	padding-right: 0px;
+}
+.imagename{
+	margin-left: 20px;
+	width: 400%;
+	margin-bottom: 5%;
+	margin-top: 5%;
+}
+.decpt{
+	margin-left: 127%;
+	width: 346%;
 }
 .newPost td:first-child{
 	text-align: right;
@@ -382,8 +400,8 @@ header{
 .newPost input,textarea{
 	width: 80%;
 }
-#previewArea{
-	width: 100%;
+#previewArea img{
+	width: 430px;
 
 }
 
