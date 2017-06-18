@@ -266,15 +266,11 @@ function voteThis(id) {
                 loginPlease(id);
             });
         } else {
-        	currentUser = user.uid;
-            if ((voted=firebase.database().ref('users/'+ currentUser +'/userVoted').once('value').then(function (snapshot){ voted = snapshot.val()})) != 0) {
-            	swal({
-            		title: "一人一票",
-            		html: "你已經投過票囉！",
-            		type: 'error'
-            	})
-            } else {
-                var text = '確定要投 ' + id + ' 號一票';
+            currentUser = user.uid;
+            if ((firebase.database().ref('users/' + currentUser + '/userVoted').once('value').then(function(snapshot) {
+                    voted = snapshot.val();
+                })) && (voted == 0)) {
+            	var text = '確定要投 ' + id + ' 號一票';
                 swal({
                     title: '投票',
                     text: text,
@@ -295,6 +291,12 @@ function voteThis(id) {
                         '投票成功！',
                         '已經成功將神聖的一票投給 ' + id + ' 號了',
                     )
+                })
+            } else {
+                swal({
+                    title: "一人一票",
+                    html: "你已經投過票囉！",
+                    type: 'error'
                 })
             }
         }
