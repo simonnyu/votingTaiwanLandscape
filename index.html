@@ -65,6 +65,8 @@
     var PostQuantity2=999;
     var PageNum2=0;
     var arr = new Array();
+    var ctx = document.getElementById('myChart');
+   
     readPostbyVote();
     
     function readPost(PageNum1) {
@@ -102,6 +104,22 @@
         if(typeof arr[PostQuantity2]!= 'undefined')
         {
             showPostbyVote(1);
+             var myChart = new Chart(ctx, {
+              type: 'horizontalBar',
+              data: {
+                labels: [arr[0].title, arr[1].title, arr[2].title],//放postTitle
+                datasets: [{
+                  backgroundColor: [
+                  'rgba(255, 0, 0, 0.2)',
+                  'rgba(255, 0, 0, 0.4)',
+                  'rgba(255, 0, 0, 0.6)',
+                  ],
+                  borderWidth: 0,
+                  label: '票數',
+                  data: [arr[0].vote, arr[1].vote, arr[2].vote, 0]//放postVote
+                }]
+              }
+            });
         } 
         else
         {
@@ -194,23 +212,7 @@
     }
 //});
 var newImageFile, newNo;
-var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-  type: 'horizontalBar',
-  data: {
-    labels: ['台北101', '大崙山', '東眼山'],
-    datasets: [{
-      backgroundColor: [
-      'rgba(255, 0, 0, 0.2)',
-      'rgba(255, 0, 0, 0.4)',
-      'rgba(255, 0, 0, 0.6)',
-      ],
-      borderWidth: 0,
-      label: '票數',
-      data: [500, 200, 300, 0]
-    }]
-  }
-});
+
     
 function showInfo(id) {
     var html;
