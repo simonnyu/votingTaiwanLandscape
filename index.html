@@ -367,7 +367,7 @@ function newPost() {
                         return currentCount + 1;
                     });
                 });
-                setTimeout(createPost(), 1000);
+                createPost();
             });
 
             newImageFile = dataURItoBlob(e.target.result);
