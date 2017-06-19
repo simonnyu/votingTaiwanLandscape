@@ -278,11 +278,13 @@ function voteThis(id) {
             currentUser = user.uid;
             currentUserName = user.displayName;
             firebase.database().ref('users/' + currentUser + '/userVoted').once('value').then(function(snapshot) {
-                voted = snapshot.val();
-                voteCheck(id);
+                voted = snapshot.val();      
             })
         }
     });
+    if(currentUser!=""){
+    	setTimeout(voteCheck(id), 1000);
+    }
 }
 
 function voteCheck(id) {
@@ -474,7 +476,7 @@ function loginPlease(postId) {
                     title: '登入成功',
                     showConfirmButton: true
                 }).then(function() {
-                    voteThis(postId);
+                    location.reload();
                 });
             } else {
                 voted = snapshot.val();
