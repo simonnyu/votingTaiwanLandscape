@@ -344,6 +344,13 @@ function newPost() {
                         </tr>\
                     </table>\
                 </form>';
+            ref.once("value").then(function(snapshot) {
+                newNo = snapshot.child('postNoRef').val();
+                newNo = newNo + 1;
+                firebase.database().ref('/postNoRef').transaction(function(currentCount) {
+                    return currentCount + 1;
+                });
+            });
             swal({
                 title: "",
                 html: html,
@@ -356,16 +363,10 @@ function newPost() {
                 confirmButtonText: '投稿'
             }).then(function() {
                 var ref = firebase.database().ref();
-                ref.once("value").then(function(snapshot) {
-                    newNo = snapshot.child('postNoRef').val();
-                    newNo = newNo + 1;
-                    firebase.database().ref('/postNoRef').transaction(function(currentCount) {
-                        return currentCount + 1;
-                    });
-                });
+
                 createPost();
             });
-            
+
             newImageFile = dataURItoBlob(e.target.result);
         }
         reader.readAsDataURL(file);
@@ -445,7 +446,7 @@ function createPost() {
                 '投稿完畢',
                 'Thank you!'
             ).then(function() {
-                    location.reload();
+                location.reload();
             });
             newImageFile = null;
         });
