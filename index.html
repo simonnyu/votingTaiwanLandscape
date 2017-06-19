@@ -356,13 +356,6 @@ function newPost() {
                 confirmButtonText: '投稿'
             }).then(function() {
                 createPost();
-                swal(
-                    '投稿完畢',
-                    'Thank you!'
-                ).then(function() {
-                    location.reload();
-
-                });
             });
 
             newImageFile = dataURItoBlob(e.target.result);
@@ -448,6 +441,15 @@ function createPost() {
             var sets = {};
             sets['/post/' + newNo] = postData;
             firebase.database().ref().update(sets);
+            swal(
+                '投稿完畢',
+                'Thank you!'
+            ).then(function() {
+                setTimeout(function() {
+                    location.reload()
+                }, 1000);
+
+            });
             newImageFile = null;
         });
 }
