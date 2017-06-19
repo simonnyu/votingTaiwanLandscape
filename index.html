@@ -85,7 +85,7 @@ function readPost(PageNum1) {
     PostNum = PostQuantity1 - PostNum;
 
     PostNumS = PostNum.toString();
-    console.log(PostNum);
+
     if (PostNum < 9) {
         var dataRef = firebase.database().ref("post").orderByKey().endAt(PostNumS).limitToLast(PostNum);
     } else {
@@ -95,7 +95,6 @@ function readPost(PageNum1) {
     dataRef.on('child_added', function(data) {
         var html = createElement(data.key, data.val().postTitle, data.val().postImage, data.val().postVote);
         $('.list').prepend(html);
-        console.log(data.key);
     })
 }
 
@@ -476,10 +475,15 @@ function loginPlease(postId) {
                 }).then(function() {
                     location.reload();
                 });
-                console.log("!");
             } else {
                 voted = snapshot.val();
-                console.log("!!");
+                swal({
+                    type: 'info',
+                    title: '登入成功',
+                    showConfirmButton: true
+                }).then(function() {
+                    location.reload();
+                });
             }
         });
 
