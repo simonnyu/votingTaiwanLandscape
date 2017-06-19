@@ -355,15 +355,20 @@ function newPost() {
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: '投稿'
             }).then(function() {
+            	swa;({
+            		text: '上傳中請稍後...',
+            		showConfirmButton: false;
+            	})
                 var ref = firebase.database().ref();
                 ref.once("value").then(function(snapshot) {
                     newNo = snapshot.child('postNoRef').val();
+                    createPost();
                     newNo = newNo + 1;
                     firebase.database().ref('/postNoRef').transaction(function(currentCount) {
                         return currentCount + 1;
                     });
                 });
-                createPost(); 
+                 
             });
 
             newImageFile = dataURItoBlob(e.target.result);
