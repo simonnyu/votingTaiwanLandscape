@@ -154,7 +154,7 @@ header{
 	font-size: 20px;
 	background: #f59b86;
 	cursor: pointer;
-	
+	font-family: 'Noto Sans TC', sans-serif;
 }
 .list ul{
 	margin: 0px;
