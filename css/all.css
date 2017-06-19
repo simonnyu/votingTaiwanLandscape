@@ -58,14 +58,14 @@ footer{
   clear: both
 }
 header{
-	background-image: url("img/header.jpg");
+	background-image: url("../img/header.jpg");
 	background-repeat: no-repeat;
 	height: 320px;
 	position: relative;
 }
 @media (max-width: 768px){
 	header{
-		background-image: url("img/TAIWAN.jpg");
+		background-image: url("../img/TAIWAN.jpg");
 		background-size: 750px 250px;
 		height: 220px;
 		margin-bottom: 20px;
