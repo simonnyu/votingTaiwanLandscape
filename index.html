@@ -240,7 +240,7 @@ function showInfo(id) {
     var html;
     var detalRef = firebase.database().ref('post/' + id + '/');
     detalRef.on('value', function(data) {
-        html = '<div>\
+        html = '<div class="picturebox">\
             <img src="' + data.val().postImage + '" width="100%">\
             <p id="workID">作品編號: ' + id + '</p>\
             <p id="workName">作品名稱: ' + data.val().postTitle + '</p>\

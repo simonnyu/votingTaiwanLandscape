@@ -410,6 +410,10 @@ header{
 	background: #66FF66;
 	cursor: pointer;
 }
+.picturebox{
+	text-align:left; 
+	line-height:30px;
+}
 
 
 
