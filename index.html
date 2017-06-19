@@ -476,8 +476,10 @@ function loginPlease(postId) {
                 }).then(function() {
                     location.reload();
                 });
+                console.log("!");
             } else {
                 voted = snapshot.val();
+                console.log("!!");
             }
         });
 
