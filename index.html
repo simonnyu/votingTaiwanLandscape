@@ -363,9 +363,9 @@ function newPost() {
                         return currentCount + 1;
                     });
                 });
-                
+                createPost();
             });
-            createPost();
+            
             newImageFile = dataURItoBlob(e.target.result);
         }
         reader.readAsDataURL(file);
