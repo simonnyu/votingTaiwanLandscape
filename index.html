@@ -362,8 +362,8 @@ function newPost() {
                     firebase.database().ref('/postNoRef').transaction(function(currentCount) {
                         return currentCount + 1;
                     });
-                    createPost();
-                }); 
+                });
+                createPost(); 
             });
 
             newImageFile = dataURItoBlob(e.target.result);
