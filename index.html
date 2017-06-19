@@ -362,13 +362,12 @@ function newPost() {
                 var ref = firebase.database().ref();
                 ref.once("value").then(function(snapshot) {
                     newNo = snapshot.child('postNoRef').val();
-                    createPost();
                     newNo = newNo + 1;
                     firebase.database().ref('/postNoRef').transaction(function(currentCount) {
                         return currentCount + 1;
                     });
                 });
-                 
+                setTimeout(createPost(), 1000);
             });
 
             newImageFile = dataURItoBlob(e.target.result);
